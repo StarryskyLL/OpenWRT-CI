@@ -36,6 +36,7 @@ UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 UPDATE_PACKAGE "luci-app-wolplus" "VIKINGYFY/luci-app-wolplus" "main"
 
+
 if [[ $WRT_REPO == *"openwrt-6.x"* ]]; then
 	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
 fi
@@ -74,5 +75,5 @@ UPDATE_VERSION() {
 	done
 }
 
-#UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
-UPDATE_VERSION "sing-box" "true"
+#UPDATE_VERSION "软件包名" "测试版，true，可选，默认空为否"
+UPDATE_VERSION "sing-box"
