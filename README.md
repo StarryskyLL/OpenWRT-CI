@@ -9,6 +9,8 @@ https://github.com/VIKINGYFY/immortalwrt.git
 
 # 固件简要说明：
 
+设备：亚瑟re-ss-01，百里re-cp-03
+
 固件每天早上4点自动编译。
 
 固件信息里的时间为编译开始的时间，方便核对上游源码提交时间。
