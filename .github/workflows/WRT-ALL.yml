@@ -39,7 +39,7 @@ jobs:
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
     with:
-      #编译平台
+      #编译配置
       WRT_CONFIG: ${{matrix.REPO_INFO.CONFIG}}
       #默认主题
       WRT_THEME: argon
@@ -56,7 +56,7 @@ jobs:
       #源码链接
       WRT_REPO: https://github.com/${{matrix.SOURCE}}.git
       #源码分支
-      WRT_BRANCH: ${{matrix.REPO_INFO.BRANCH}}
+      WRT_BRANCH: ${{matrix.BRANCH}}
       #源码名称
       WRT_SOURCE: ${{matrix.SOURCE}}
       #插件调整
