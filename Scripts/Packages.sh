@@ -70,6 +70,9 @@ UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 UPDATE_PACKAGE "lazyoop" "lazyoop/networking-artifact" "main"
 
 UPDATE_PACKAGE "luci-app-store" "linkease/istore" "main"
+UPDATE_PACKAGE "luci-lib-taskd" "linkease/istore" "main"
+UPDATE_PACKAGE "luci-lib-xterm" "linkease/istore" "main"
+UPDATE_PACKAGE "taskd" "linkease/istore" "main"
 
 
 if [[ $WRT_REPO != *"immortalwrt"* ]]; then
