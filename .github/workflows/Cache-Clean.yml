@@ -11,8 +11,8 @@ env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 jobs:
-  auto_clean:
-    runs-on: ubuntu-22.04
+  cleanup:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Projects
         uses: actions/checkout@main
