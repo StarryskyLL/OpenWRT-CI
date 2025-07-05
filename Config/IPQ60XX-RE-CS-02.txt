@@ -4,3 +4,4 @@ CONFIG_TARGET_qualcommax_ipq60xx=y
 CONFIG_PACKAGE_ath11k-firmware-ipq6018=n
 #设备列表
 CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02=y
+CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_anysafe_e1=y
