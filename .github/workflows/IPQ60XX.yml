@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        CONFIG: [IPQ60XX-RE-CS-02]
+        CONFIG: [IPQ60XX-RE-CS-02, IPQ60XX-RE-CS-02-WIFI-NO]
         SOURCE: [VIKINGYFY/immortalwrt]
         BRANCH: [main]
 
@@ -42,7 +42,7 @@ jobs:
       #编译配置
       WRT_CONFIG: ${{matrix.CONFIG}}
       #默认主题
-      WRT_THEME: aurora
+      WRT_THEME: kucat
       #默认主机名
       WRT_NAME: HarmonyOS
       #默认WIFI名称
