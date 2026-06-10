@@ -1,6 +1,3 @@
-# 高质量中转站
-
-点击链接加入群聊【LiBwrt-Ai学习】：https://qm.qq.com/q/HTa7OiWNCU
 
 # OpenWRT-CI
 
