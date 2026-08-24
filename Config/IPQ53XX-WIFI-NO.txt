@@ -1,0 +1,7 @@
+#设备平台
+CONFIG_TARGET_qualcommax=y
+CONFIG_TARGET_qualcommax_ipq53xx=y
+#设备列表
+CONFIG_TARGET_DEVICE_qualcommbe_ipq53xx_DEVICE_xiaomi_be3600-pro-5-eth=y
+CONFIG_TARGET_DEVICE_qualcommbe_ipq53xx_DEVICE_xiaomi_be3600-pro-8-eth=y
+CONFIG_TARGET_DEVICE_qualcommbe_ipq53xx_DEVICE_jdcloud_re-cs-08=y

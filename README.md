@@ -3,6 +3,14 @@
 
 https://github.com/VIKINGYFY/OWRT-Tools.git
 
+# 本地编译器
+
+https://github.com/VIKINGYFY/OWRT-Tools.git
+
+# 自用修改版插件
+
+https://github.com/VIKINGYFY/packages.git
+
 # OpenWRT-CI
 
 官方版：

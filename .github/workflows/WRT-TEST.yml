@@ -14,15 +14,17 @@ on:
         required: true
         type: choice
         options:
-          - IPQ60XX-WIFI-YES
+          - IPQ53XX-WIFI-NO
           - IPQ60XX-WIFI-NO
-          - IPQ807X-WIFI-YES
+          - IPQ60XX-WIFI-YES
           - IPQ807X-WIFI-NO
-          - MEDIATEK-WIFI-YES
+          - IPQ807X-WIFI-YES
+          - IPQ95XX-WIFI-YES
           - MEDIATEK-WIFI-NO
+          - MEDIATEK-WIFI-YES
           - ROCKCHIP
-          - X86
           - TEST
+          - X86
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
         required: true
