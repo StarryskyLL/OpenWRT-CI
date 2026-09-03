@@ -2,38 +2,26 @@
 # Copyright (C) 2026 VIKINGYFY
 
 #CI项目
-name: WRT-TEST
+name: CPE
 
 #CI计划
 on:
+  #自动编译：当Auto-Clean运行完成后
+  workflow_run:
+    workflows: ["Auto-Clean"]
+    types:
+      - completed
   #手动编译
   workflow_dispatch:
     inputs:
-      CONFIG:
-        default: 'MTK'
-        required: true
-        type: choice
-        options:
-          - MTK
-          - CPE
-          - TEST
-      SOURCE:
-        default: 'VIKINGYFY/immortalwrt'
-        required: true
-        type: choice
-        options:
-          - VIKINGYFY/immortalwrt
-      BRANCH:
-        default: 'main'
-        required: true
-        type: string
       PACKAGE:
+        description: '手动调整插件包，多个请用\n符号隔开'
         required: false
         type: string
       TEST:
         description: '仅输出配置文件，不编译固件。'
-        default: true
-        required: true
+        default: false
+        required: false
         type: boolean
 
 #CI权限
@@ -42,12 +30,20 @@ permissions: write-all
 #CI任务
 jobs:
   config:
-    name: ${{inputs.CONFIG}}
+    name: ${{matrix.CONFIG}}
+    strategy:
+      fail-fast: false
+      #max-parallel: 3
+      matrix:
+        CONFIG: [CPE]
+        SOURCE: [VIKINGYFY/immortalwrt]
+        BRANCH: [owrt]
+
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
     with:
       #编译配置
-      WRT_CONFIG: ${{inputs.CONFIG}}
+      WRT_CONFIG: ${{matrix.CONFIG}}
       #默认主题
       WRT_THEME: aurora
       #默认主机名
@@ -61,11 +57,11 @@ jobs:
       #默认密码，仅作提示，修改无用
       WRT_PW: 无
       #源码链接
-      WRT_REPO: https://github.com/${{inputs.SOURCE}}.git
+      WRT_REPO: https://github.com/${{matrix.SOURCE}}.git
       #源码分支
-      WRT_BRANCH: ${{inputs.BRANCH}}
+      WRT_BRANCH: ${{matrix.BRANCH}}
       #源码名称
-      WRT_SOURCE: ${{inputs.SOURCE}}
+      WRT_SOURCE: ${{matrix.SOURCE}}
       #插件调整
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
