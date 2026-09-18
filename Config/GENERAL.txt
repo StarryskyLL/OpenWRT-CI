@@ -9,7 +9,6 @@ CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-wolultra=y
 #删除插件
 CONFIG_PACKAGE_luci-app-attendedsysupgrade=n
-CONFIG_PACKAGE_luci-app-qmodem-next=n
 CONFIG_PACKAGE_luci-app-wol=n
 #参数调整
 CONFIG_CCACHE=y
@@ -119,6 +118,3 @@ CONFIG_PACKAGE_usb-modeswitch=y
 CONFIG_PACKAGE_usbmuxd=y
 CONFIG_PACKAGE_usbutils=y
 CONFIG_PACKAGE_xz-utils=y
-CONFIG_PACKAGE_qmodem_INCLUDE_generic-qmi-wwan=y
-CONFIG_PACKAGE_qmodem_INCLUDE_nss-qmi-wwan=n
-CONFIG_PACKAGE_qmodem_INCLUDE_vendor-qmi-wwan=n
