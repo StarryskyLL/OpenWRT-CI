@@ -83,8 +83,13 @@ UPDATE_PACKAGE "natmapt" "muink/openwrt-natmapt" "master"
 UPDATE_PACKAGE "stuntman" "muink/openwrt-stuntman" "master"
 UPDATE_PACKAGE "luci-app-natmapt" "muink/luci-app-natmapt" "master"
 
-UPDATE_PACKAGE "airpi3000m" "LianXia233/luci-app-airpi3000m-fancontrol" "main"
-UPDATE_PACKAGE "h5000m" "LianXia233/luci-app-h5000m-netmode" "main"
+UPDATE_PACKAGE "airpi3000m-fancontrol" "LianXia233/luci-app-airpi3000m-fancontrol" "main"
+UPDATE_PACKAGE "chfs" "LianXia233/luci-app-chfs" "main"
+UPDATE_PACKAGE "fm350" "LianXia233/luci-app-fm350" "main"
+UPDATE_PACKAGE "h5000m-netmode" "LianXia233/luci-app-h5000m-netmode" "main"
+UPDATE_PACKAGE "mt5700" "LianXia233/luci-app-mt5700" "main"
+UPDATE_PACKAGE "mt5700m" "LianXia233/luci-app-mt5700m" "main"
+UPDATE_PACKAGE "netmonitor" "LianXia233/luci-app-netmonitor" "main"
 UPDATE_PACKAGE "qmodem-generic" "LianXia233/luci-app-qmodem-generic" "main"
 
 #更新软件包版本
