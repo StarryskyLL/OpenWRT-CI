@@ -192,6 +192,62 @@ jobs:
 
           make download -j$(nproc)
 
+      - name: Prepare Rust Toolchain
+        # 含 Rust 后端的包（如 luci-app-fm350）需要 rustup 提供目标架构的标准库。
+        # GitHub Runner 预装的 Rust 只有宿主目标，缺失时报 error[E0463]。
+        if: ${{ !inputs.WRT_TEST }}
+        run: |
+          cd ./wrt/
+
+          # 主路径：读 defconfig 产出的 CONFIG_ARCH；兜底：解析已生成的工具链目录名
+          ARCH="$(sed -n 's/^CONFIG_ARCH="\([^\"]*\)".*/\1/p' .config | head -1)"
+          if [ -z "${ARCH}" ]; then
+            ARCH="$(ls -d staging_dir/toolchain-* 2>/dev/null | head -1 \
+                    | sed -E 's#.*toolchain-([a-z0-9]+).*#\1#' || true)"
+          fi
+          if [ -z "${ARCH}" ]; then
+            echo "::warning::未能确定目标架构，跳过 Rust 交叉编译目标准备"
+            exit 0
+          fi
+
+          # 架构 -> target triple，映射与 luci-app-fm350/Makefile 的 RUST_TARGET 保持一致
+          case "${ARCH}" in
+            aarch64) RUST_TARGET="aarch64-unknown-linux-musl" ;;
+            x86_64)  RUST_TARGET="x86_64-unknown-linux-musl" ;;
+            i386)    RUST_TARGET="i686-unknown-linux-musl" ;;
+            arm)     RUST_TARGET="armv7-unknown-linux-musleabihf" ;;
+            mipsel)  RUST_TARGET="mipsel-unknown-linux-musl" ;;
+            riscv64) RUST_TARGET="riscv64gc-unknown-linux-musl" ;;
+            *)       RUST_TARGET="${ARCH}-unknown-linux-musl" ;;
+          esac
+          echo "目标架构=${ARCH} -> Rust target=${RUST_TARGET}"
+
+          # rustup 未必在 PATH 上（参考 luci-app-fm350 的 scripts/build-release.sh）
+          rustup_bin="$(command -v rustup 2>/dev/null || true)"
+          if [ -z "${rustup_bin}" ]; then
+            for cand in "${CARGO_HOME:-}/bin/rustup" "${HOME}/.cargo/bin/rustup" \
+                        /usr/local/cargo/bin/rustup /usr/local/rustup/bin/rustup /usr/bin/rustup; do
+              if [ -x "${cand}" ]; then rustup_bin="${cand}"; break; fi
+            done
+          fi
+          if [ -z "${rustup_bin}" ]; then
+            echo "::error::未找到 rustup，无法为 ${RUST_TARGET} 安装标准库"
+            exit 1
+          fi
+          PATH="$(dirname "${rustup_bin}"):${PATH}"
+          export PATH
+          echo "rustup: ${rustup_bin}"
+
+          if ! rustup target list --installed | grep -qx "${RUST_TARGET}"; then
+            rustup target add "${RUST_TARGET}"
+          fi
+          # 装完必须回查：避免安装失败后继续往下走，最后只看到难懂的 cargo 报错
+          if ! rustup target list --installed | grep -qx "${RUST_TARGET}"; then
+            echo "::error::Rust target ${RUST_TARGET} 不可用"
+            exit 1
+          fi
+          echo "::notice::Rust 交叉编译目标就绪：${RUST_TARGET}"
+
       - name: Compile Firmware
         if: ${{ !inputs.WRT_TEST }}
         run: |
