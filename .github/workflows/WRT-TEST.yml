@@ -10,21 +10,30 @@ on:
   workflow_dispatch:
     inputs:
       CONFIG:
-        default: 'MTK'
+        default: 'MEDIATEK-WIFI-YES'
         required: true
         type: choice
         options:
-          - MTK
-          - CPE
+          - IPQ53XX-WIFI-NO
+          - IPQ60XX-WIFI-NO
+          - IPQ60XX-WIFI-YES
+          - IPQ807X-WIFI-NO
+          - IPQ807X-WIFI-YES
+          - IPQ95XX-WIFI-YES
+          - MEDIATEK-WIFI-NO
+          - MEDIATEK-WIFI-YES
+          - ROCKCHIP
           - TEST
+          - X86
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
         required: true
         type: choice
         options:
           - VIKINGYFY/immortalwrt
+          - immortalwrt/immortalwrt
       BRANCH:
-        default: 'main'
+        default: 'owrt'
         required: true
         type: string
       PACKAGE:
