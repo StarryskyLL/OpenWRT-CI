@@ -4,9 +4,9 @@
 name: Auto-Clean
 
 on:
-  #自动清理：每天早上2点02分（UTC 18:02，避开整点调度拥塞）
+  #自动清理：每天早上3点41分（UTC 19:41，避开整点高峰与凌晨编译扎堆时段）
   schedule:
-    - cron: '2 18 * * *'
+    - cron: '41 19 * * *'
   #手动清理
   workflow_dispatch:
 
