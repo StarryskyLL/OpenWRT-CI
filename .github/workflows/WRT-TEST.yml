@@ -10,12 +10,22 @@ on:
   workflow_dispatch:
     inputs:
       CONFIG:
-        default: 'MTK'
+        default: 'MEDIATEK-WIFI-YES'
         required: true
         type: choice
         options:
-          - MTK
-          - CPE
+          - AIROHA-AN7581
+          - AIROHA-AN7583
+          - IPQ53XX
+          - IPQ60XX-WIFI-NO
+          - IPQ60XX-WIFI-YES
+          - IPQ807X-WIFI-NO
+          - IPQ807X-WIFI-YES
+          - IPQ95XX
+          - MEDIATEK-WIFI-NO
+          - MEDIATEK-WIFI-YES
+          - ROCKCHIP
+          - X86
           - TEST
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
@@ -23,8 +33,9 @@ on:
         type: choice
         options:
           - VIKINGYFY/immortalwrt
+          - immortalwrt/immortalwrt
       BRANCH:
-        default: 'main'
+        default: 'owrt'
         required: true
         type: string
       PACKAGE:
@@ -49,7 +60,7 @@ jobs:
       #编译配置
       WRT_CONFIG: ${{inputs.CONFIG}}
       #默认主题
-      WRT_THEME: aurora
+      WRT_THEME: vantage
       #默认主机名
       WRT_NAME: OWRT
       #默认WIFI名称
